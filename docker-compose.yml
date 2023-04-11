@@ -1,0 +1,23 @@
+version: "3.8"
+
+x-logging: &default-logging
+  options:
+    max-size: "12m"
+    max-file: "5"
+  driver: json-file
+
+services:
+  app:
+    logging: *default-logging
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: app
+    # user: root
+    stdin_open: true
+    tty: true
+    init: true
+    working_dir: /app
+    command: tail -f /dev/null
+    volumes:
+      - ./:/app:cached

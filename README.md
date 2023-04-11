@@ -29,3 +29,16 @@ $ curl -s http://www.xmlfiles.com/examples/note.xml
 $ curl -s http://www.xmlfiles.com/examples/note.xml | xpup '/*/body'
 Don't forget me this weekend!
 ```
+
+## Example using Docker
+
+```
+$ curl -s http://www.xmlfiles.com/examples/note.xml | docker run --rm gendosu/xpup xpup '/*/body'
+Don't forget me this weekend!
+```
+
+## build docker image
+
+```
+$ docker buildx build --platform linux/amd64,linux/arm64 -t gendosu/xpup:latest --push .
+```
